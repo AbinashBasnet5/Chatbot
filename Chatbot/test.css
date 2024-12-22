@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Reset and Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #E3F2FD;
+}
+
+/* Chatbot Toggler Styles */
+.chatbot-toggler {
+    position: fixed;
+    right: 40px;
+    bottom: 35px;
+    height: 50px;
+    width: 50px;
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    cursor: pointer;
+    background-color: #724ae8;
+    border-radius: 50%;
+    font-size: 1.15rem;
+    z-index: 1100;
+    transition: transform 0.3s ease;
+}
+
+.chatbot-toggler span {
+    position: absolute;
+}
+
+.chatbot-toggler span:first-child {
+    opacity: 1;
+}
+
+.chatbot-toggler span:last-child {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+/* Chatbox Container */
+.chatbot {
+    position: fixed;
+    right: 40px;
+    bottom: 90px;
+    width: 350px;
+    height: 500px;
+    transform: scale(0);
+    transform-origin: bottom right;
+    transition: transform 0.5s ease, opacity 0.5s ease, border-radius 0.5s ease, width 0.5s ease, height 0.5s ease;
+    opacity: 0;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
+                0 32px 64px -48px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    z-index: 1000;
+}
+
+body.show-chatbot .chatbot {
+    transform: scale(1);
+    opacity: 1;
+    border-radius: 15px;
+    width: 350px;
+    height: 500px;
+    pointer-events: auto;
+}
+
+.chatbot-toggler .close {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+body.show-chatbot .chatbot-toggler .convo {
+    opacity: 0;
+}
+
+body.show-chatbot .chatbot-toggler .close {
+    opacity: 1;
+}
+
+/* Chatbox Header */
+.chatbot header {
+    color: #fff;
+    background-color: #724ae8;
+    padding: 16px 0;
+    text-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+
+.chatbot header h2 {
+    color: #fff;
+    font-size: 1.4rem;
+}
+.chatbot header span{
+    position: absolute;
+    right: 20px;
+    top:35px;
+    color:#fff;
+    cursor:pointer;
+    font-size: 1.30rem;
+    transform: translateY(-50%);
+}
+
+/* Chatbox Messages */
+.chatbot .chatbox {
+    height: calc(100% - 130px);
+    overflow-y: auto;
+    padding: 30px 20px 70px;
+}
+
+.chatbox .chat {
+    display: flex;
+}
+
+.chatbot .incoming span {
+    height: 32px;
+    width: 32px;
+    color: #fff;
+    background: #724ae8;
+    border-radius: 4px;
+    line-height: 32px;
+    align-self: flex-end;
+    margin: 0 10px 7px 0;
+    text-align: center;
+}
+
+.chatbot .outgoing {
+    margin: 20px 0;
+    justify-content: flex-end;
+}
+
+.chatbox .chat p {
+    color: #fff;
+    font-size: 0.95rem;
+    padding: 12px 16px;
+    border-radius: 10px 10px 0 10px;
+    background-color: #724ae8;
+}
+
+.chatbox .incoming p {
+    color: #000;
+    background: #f2f2f2;
+    border-radius: 10px 10px 0 10px;
+}
+
+/* Input Area */
+.chatbot .input-chat {
+    display: flex;
+    border-top: 1px solid #ccc;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 5px 20px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.input-chat textarea {
+    border: none;
+    height: 55px;
+    width: 100%;
+    outline: none;
+    font-size: 0.95rem;
+    resize: none;
+    padding: 16px 15px 16px 0;
+}
+
+.input-chat span {
+    align-self: flex-end;
+    height: 55px;
+    line-height: 55px;
+    visibility: hidden;
+    cursor: pointer;
+    font-size: 1.35rem;
+    color: #724ae8;
+}
+
+.input-chat textarea:valid ~ span {
+    visibility: visible;
+}
+
+/* Responsive Styles */
+@@media screen and (max-width: 768px) {
+    .chatbot {
+        width: 350px; /* Keep the original width */
+        height: 450px; /* Slightly reduced height */
+        right: 10px; /* Adjust position */
+        bottom: 20px;
+        border-radius: 15px; /* Rounded corners */
+    }
+
+    .chatbot-toggler {
+        right: 10px; /* Adjust button position */
+        bottom: 20px;
+        height: 45px; /* Slightly smaller button */
+        width: 45px;
+    }
+
+    .chatbox {
+        padding: 20px 15px 60px; /* Reduce padding for compact look */
+        height: 350px; /* Reduce height of chat messages */
+    }
+
+    .input-chat textarea {
+        height: 50px; /* Compact input field */
+    }
+
+    .input-chat span {
+        font-size: 1.25rem; /* Slightly smaller send button */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .chatbot header span{
+        top:30px;
+    }
+    .chatbot {
+        width: 95%;
+        height: 70%;
+        right: 2.5%;
+        bottom: 120px;
+        border-radius: 25px;
+    }
+
+    body.show-chatbot .chatbot {
+        width: 95%;
+        height: 70%;
+        border-radius: 25px;
+    }
+
+    .chatbot-toggler {
+        right: 15px;
+        bottom: 75px;
+        height: 40px;
+        width: 40px;
+        font-size: 0.9rem;
+    }
+
+    .chatbot header {
+        padding: 10px 0;
+        font-size: 1rem;
+    }
+
+    .input-chat {
+        padding: 5px 10px;
+        height: 60px;
+    }
+
+    .input-chat textarea {
+        font-size: 0.9rem;
+        height: 45px;
+    }
+}
+.chatbox {
+    scrollbar-width:thin;
+    border-radius: 10px;
+    scrollbar-color: #724ae8 #f0f0f0; /* Blue thumb with a light background */
+  }
+  
+  /* Webkit browsers (Chrome, Safari, Edge) scrollbar styling */
+  .chatbox::-webkit-scrollbar {
+    width: 10px; /* Set the width of the scrollbar */
+  }
+  
+  .chatbox::-webkit-scrollbar-thumb {
+    background-color: #724ae8; /* Blue color for the scrollbar thumb */
+    border-radius: 50px; /* Rounded corners for the thumb */
+    border: 3px solid #f0f0f0; /* Light border around the thumb for better visibility */
+    transition: background-color 0.3s ease; /* Smooth transition effect */
+  }
+  
+  .chatbox::-webkit-scrollbar-thumb:hover {
+    background-color: #0056b3; /* Darker blue when hovering over the thumb */
+  }
+  
+  .chatbox::-webkit-scrollbar-track {
+    background-color: #f0f0f0; /* Light background for the scrollbar track */
+    border-radius: 50px; /* Rounded corners for the track */
+  }
+  
+  .chatbox::-webkit-scrollbar-track:hover {
+    background-color: #e0e0e0; /* Slightly darker background on hover */
+  }
