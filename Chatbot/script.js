@@ -26,19 +26,19 @@ let userMessage;
 const generateResponse = (incomingChatLi) => {
   // const API_KEY = 'Enter your API key here, after creating or purchasing';
   const messageElement = incomingChatLi.querySelector("p");
-  // const API_URL = "https://api.openai.com/v1/chat/completions"; use any API url 
+  const API_URL = "API_KEY_HERE"; use any API url 
 
   const requestOptions = {
     method: "POST",
     headers: {
-      //  commented due to security reasons 
-      // "Content-Type": "application/json",
-      // "Authorization": `Bearer ${API_KEY}`,
+      
+      "Content-Type": "application/json",
+       "Authorization": `Bearer ${API_KEY}`,
     },
     body: JSON.stringify({
-      // commented due to security reasons of OPEN API
-      // model: 'gpt-3.5-turbo',  
-      // messages: [{ role: "user", content: userMessage }],
+     
+      model: 'gpt-3.5-turbo',  
+      messages: [{ role: "user", content: userMessage }],
     }),
   };
 
